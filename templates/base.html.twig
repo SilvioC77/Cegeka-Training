@@ -13,6 +13,27 @@
         {% endblock %}
     </head>
     <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Travel agency</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        {% if is_granted('ROLE_API') %}<li><a href="{{ path('api_entrypoint') }}">Api</a></li>{% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path('admin') }}">Admin</a></li>{% endif %}
+                        {% if is_granted('ROLE_SILVIO') %}<li><a href="{{ path('silvio_test') }}">Silvio Test</a></li>{% endif %}
+                        {% if app.user %}
+                            <li><a href="{{ path('fos_user_profile_show') }}">Logged in as {{ app.user }}</a></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                        {% else %}
+                            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                            <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

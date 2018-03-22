@@ -3,7 +3,7 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_API]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_API, ROLE_SILVIO]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
@@ -17,7 +17,8 @@ security:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
 
-            logout:       true
+            logout:
+                target:   fos_user_security_login
             anonymous:    true
             http_basic: ~
 
@@ -27,3 +28,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/api, role: ROLE_API }
+        - { path: ^/silvio, role: ROLE_SILVIO }

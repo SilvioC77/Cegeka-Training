@@ -3,8 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
+ * @ApiResource(
+ *     collectionOperations={"get"={"method"="GET"}},
+ *     itemOperations={"get"={"method"="GET"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\HotelRepository")
  */
 class Hotel
@@ -66,12 +72,12 @@ class Hotel
         return $this->id;
     }
 
-    public function getAgency(): ?int
+    public function getAgency()
     {
         return $this->agency;
     }
 
-    public function setAgency(int $agency): self
+    public function setAgency($agency): self
     {
         $this->agency = $agency;
 
