@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <h1>Flights</h1>
+
+    <table class="table">
+        <tr>
+            <th>Agency</th>
+            <th>Airline</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Duration</th>
+            <th>Price</th>
+        </tr>
+        {% for flight in flights %}
+            <tr>
+                <td>{{flight.agency.name}}</td>
+                <td>{{flight.airline}}</td>
+                <td>{{flight.flightfrom}}</td>
+                <td>{{flight.flightto}}</td>
+                <td>{{flight.duration}} hours</td>
+                <td>&euro; {{flight.price}}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h1>Hotels</h1>
+
+    <table class="table">
+        <tr>
+            <th>Agency</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Stars</th>
+            <th>Price per night</th>
+        </tr>
+        {% for hotel in hotels %}
+            <tr>
+                <td>{{hotel.agency.name}}</td>
+                <td>{{hotel.name}}</td>
+                <td>{{hotel.location}}</td>
+                <td>{{hotel.stars}}</td>
+                <td>&euro; {{hotel.price}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
